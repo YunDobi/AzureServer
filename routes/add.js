@@ -27,7 +27,7 @@ router.get('/', function (req, res) {
       // ... error checks
       const result = await sql.query`insert into clients (name, email, passowrd) VALUEs (${VALUES[0]}, ${VALUES[1]}, ${VALUES[2]});`;
       console.log(result.rowsAffected[0]);
-      res.send(result.rowsAffected);
+      res.render('add', {clent: result.rowsAffected});
     });
   }
 });
