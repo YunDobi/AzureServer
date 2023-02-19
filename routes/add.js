@@ -1,10 +1,10 @@
 let express = require('express');
 let router = express.Router();
 const sql = require('mssql');
-require("dotenv").config();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res) {
+  let column = ['name', 'email', 'passowrd'];
+  let VALUES = ['Alice', 'email1@mail.com', '123'];
   const config = {
     user: process.env.user, // better stored in an app setting such as process.env.DB_USER
     password: process.env.password, // better stored in an app setting such as process.env.DB_PASSWORD
@@ -23,23 +23,12 @@ router.get('/', function(req, res, next) {
 
   // eslint-disable-next-line func-style
   async function connectAndQuery() {
-    try {
-      let poolConnection = await sql.connect(config);
-
-      console.log('Reading rows from the Table...');
-      let resultSet = await poolConnection
-        .request()
-        .query(`SELECT top 5 * from [dbo]. [clients];`);
-
-      console.log(`${resultSet.recordset.length} rows returned.`);
-      console.log(resultSet.recordset);
-      res.send(resultSet.recordset);
-
-      poolConnection.close();
-    } catch (err) {
-      console.error(err.message);
-    }
+    await sql.connect(config, async (err) => {
+      // ... error checks
+      const result = await sql.query`insert into clients (name, email, passowrd) VALUEs (${VALUES[0]}, ${VALUES[1]}, ${VALUES[2]});`;
+      console.log(result.rowsAffected[0]);
+      res.send(result.rowsAffected);
+    });
   }
 });
-
 module.exports = router;

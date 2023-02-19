@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/23d8f6aa-3134-46d8-b5c2-4de9283d2006/AppServices/subscriptions/23d8f6aa-3134-46d8-b5c2-4de9283d2006/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/dbfromvs",
+  "appService.deploySubpath": "."
+}
