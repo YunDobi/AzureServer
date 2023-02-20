@@ -45,7 +45,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function (req, res) {
-  let VALUES = [req.body.name, req.body.email, req.body.password];
+  let VALUES = [req.body.name, req.body.email, req.body.password, req.body.visited];
   const config = {
     user: process.env.user, // better stored in an app setting such as process.env.DB_USER
     password: process.env.password, // better stored in an app setting such as process.env.DB_PASSWORD
@@ -65,11 +65,15 @@ router.post('/', function (req, res) {
 
   // eslint-disable-next-line func-style
   async function InsertAndQuery() {
-    await sql.connect(config, async (err) => {
-      // ... error checks
-      const result = await sql.query`insert into clients (name, email, passowrd) VALUEs (${VALUES[0]}, ${VALUES[1]}, ${VALUES[2]});`;
-      console.log(result.rowsAffected[0]);
-    });
+    try {
+      await sql.connect(config, async (err) => {
+        // ... error checks
+        const result = await sql.query`insert into clients (name, email, password, visited) VALUEs (${VALUES[0]}, ${VALUES[1]}, ${VALUES[2]}, ${VALUES[3]});`;
+        console.log(result.rowsAffected[0]);
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 });
 
