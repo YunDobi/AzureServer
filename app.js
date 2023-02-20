@@ -6,6 +6,7 @@ let logger = require('morgan');
 
 let indexRouter = require('./routes/index');
 let addRouter = require('./routes/add');
+let resetRouter = require('./routes/reset');
 
 const sql = require('mssql');
 let app = express();
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/add', addRouter);
+app.use('/reset', resetRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

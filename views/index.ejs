@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Users</title>
-    <link rel='stylesheet' href='./style.css' />
+    <link rel='stylesheet' href='style.css' />
   </head>
   <%- include('./header') %>
   <body>
@@ -13,7 +13,13 @@
             <%= clent.name %>
           </h2>
           <p>
-            <%= clent.email %>
+            email:  <%= clent.email %>
+          </p>
+          <p>
+            You visited: <%= clent.visited %>
+          </p>
+          <p>
+            Future visit date will be: <%= Number(clent.visited) + 2 %>
           </p>
         </li>
       <% }) %>
