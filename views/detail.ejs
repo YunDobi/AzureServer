@@ -2,21 +2,23 @@
 <html>
   <head>
     <title>Users</title>
-    <link rel='stylesheet' href='./style.css' />
+    <!-- <link rel='stylesheet' href='./style.css' /> -->
   </head>
   <%- include('./header') %>
   <body>
-    <form action="/add" method="post">
+    <form action="/detail/<%= item[0].id %>" method="post">
       <fieldset>
         <legend>Form</legend>
+        <label for="id">client_id: </label>
+        <input type="text" name="id" value="<%= item[0].id %>" readonly/> <br />
         <label for="name">name: </label>
-        <input type="text" name="name" /> <br />
+        <input type="text" name="name" value="<%= item[0].name %>" /> <br />
         <label for="email">email: </label>
-        <input type="text" name="email" /> <br />
+        <input type="text" name="email" value="<%= item[0].email %>" /> <br />
         <label for="password">password:  </label>
         <input type="text" name="password" /> <br />
         <label for="password">visited:  </label>
-        <input type="text" name="visited" /> <br />
+        <input type="text" name="visited" value="<%= item[0].visited %>" /> <br />
         <input type="submit" value="submit" />
       </fieldset>
     </form>

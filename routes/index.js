@@ -29,7 +29,7 @@ async function connectAndQuery(req, res) {
 
     console.log(`${resultSet.recordset.length} rows returned.`);
     console.log(resultSet.recordset);
-    res.render('index',{clents: resultSet.recordset});
+    res.render('index',{clients: resultSet.recordset});
 
     poolConnection.close();
   } catch (err) {

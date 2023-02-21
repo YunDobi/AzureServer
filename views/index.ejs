@@ -7,21 +7,24 @@
   <%- include('./header') %>
   <body>
     <ul>
-      <% clents.forEach((clent) => { %>
+      <% clients.forEach((client) => { %>
         <li>
           <h2>
-            <%= clent.name %>
+            <%= client.name %>
           </h2>
           <p>
-            email:  <%= clent.email %>
+            email:  <%= client.email %>
           </p>
           <p>
-            You visited: <%= clent.visited %>
+            You visited: <%= client.visited %>
           </p>
           <p>
-            Future visit date will be: <%= Number(clent.visited) + 2 %>
+            Future visit date will be: <%= Number(client.visited) + 2 %>
           </p>
         </li>
+        <form action="detail/<%= client.id %>" method="get">
+          <input type="submit" value="change" />
+        </form>
       <% }) %>
     </ul>
 
