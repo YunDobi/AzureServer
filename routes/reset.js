@@ -34,14 +34,14 @@ async function connectAndQuery(req, res) {
         password VARCHAR(255) NOT NULL,
         visited varchar(255) NOT NULL
       );`);
-      let resultSet3 = await poolConnection
+    let resultSet3 = await poolConnection
       .request()
       .query(`SELECT * from clients`);
 
     console.log(`${resultSet.recordset} rows returned.`);
-    console.log(resultSet);
-    console.log(resultSet2);
-    console.log(resultSet3);
+    resultSet();
+    resultSet2();
+    resultSet3();
     res.render('reset', {title: "reseted"});
 
     poolConnection.close();
